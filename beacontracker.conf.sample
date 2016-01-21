@@ -20,3 +20,5 @@ beaconlist = "beacon-lamps.json"
 
 # MQTT topic prefix; user's base topic (owntracks/jpm/5s) will be appended to this with a slash
 prefix = "lights"
+
+beaconpub = "beacons"

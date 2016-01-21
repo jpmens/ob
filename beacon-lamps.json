@@ -1,4 +1,5 @@
 [
 	[1, 1, { "desc" : "JP's office", "url" : "http://lamps/lap?area51"}  ],
-	[1, 201, { "desc" : "Area-51", "url" : "http://mylamp?special-function=14" } ]
+	[1, 201, { "desc" : "Area-51", "url" : "http://mylamp?special-function=14" } ],
+	[1, 3, { "desc" : "t420-laptop", "url" : "http://127.0.0.1/laptop"}  ]
 ]
