@@ -96,6 +96,9 @@ def on_transition(mosq, userdata, msg):
         print "-- not a transition payload"
         return
 
+    if data['_type'] != 'leave':
+        return
+
     if 't' not in data or data['t'] != 'b':
         print "-- not a 't:b' payload"
         return
@@ -115,6 +118,7 @@ def on_beacon(mosq, userdata, msg):
 
     base_topic, suffix = twosplit(msg.topic)
     new_topic = "%s/%s" % (m.get('prefix'), base_topic)
+    beacon_topic = "%s/%s" % (m.get('beaconpub'), base_topic)
     print "new = ", new_topic
     
     try:
@@ -137,6 +141,8 @@ def on_beacon(mosq, userdata, msg):
             print b[2]
             payload = json.dumps(b[2])
             mqttc.publish(new_topic, payload, qos=2, retain=False)
+
+            mqttc.publish(beacon_topic, msg.payload, qos=2, retain=False)
             
 
     return
