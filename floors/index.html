@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Floor Plan</title>
+			<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+			<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+			<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+			<script type="text/javascript" src="floorplan.js"></script>
+			<script type="text/javascript" src="imagelayer.js"></script>
+			<script type="text/javascript" src="regions.js"></script>
+			<script type="text/javascript" src="beacons.js"></script>
+			<script type="text/javascript" src="devices.js"></script>
+			<script type="text/javascript" src="proximities.js"></script>
+
+		<style type="text/css">
+			@import url('https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css');
+			@import url('default.css');
+		</style>
+	</head>
+	<body>
+
+		<h2>Floor Plan</h2>
+
+		<h4>Maps</h4>
+		<div id="d3out"></div>
+
+		<script language="javascript" type="text/javascript">
+
+			var out = function(message) {
+				var div = document.createElement('div');
+				div.innerHTML = message;
+				document.getElementById('output').appendChild(div);
+			};
+
+			var mapdata = {};
+			var regions;
+			var beacons;
+			var devices;
+			var proximities;
+			var map;
+
+			d3.json("data.json", function(error, data) {
+				var xscale = d3.scale.linear()
+						.domain([0, data.canvaswidth])
+						.range([0, data.width]);
+				var yscale = d3.scale.linear()
+						.domain([0, data.canvasheight])
+						.range([0, data.height]);
+
+				map = d3.floorplan().xScale(xscale).yScale(yscale);
+
+				var imagelayer = d3.floorplan.imagelayer();
+
+				regions = d3.floorplan.regions();
+				beacons = d3.floorplan.beacons();
+				devices = d3.floorplan.devices();
+				proximities = d3.floorplan.proximities();
+
+				map.addLayer(imagelayer);
+				map.addLayer(regions);
+				map.addLayer(beacons);
+				map.addLayer(devices);
+				map.addLayer(proximities);
+
+				mapdata[imagelayer.id()] =  data.imagelayer;
+				mapdata[regions.id()] =  data.owntracks;
+				mapdata[beacons.id()] =  data.owntracks;
+				mapdata[devices.id()] =  data.owntracks;
+				mapdata[proximities.id()] =  data.owntracks;
+
+				d3.select("#d3out")
+					.append("svg")
+					.attr("height",  data.height)
+					.attr("width",  data.width)
+					.datum(mapdata).call(map);
+			});
+
+
+			window.onload = function() {
+				var num_messages = 0;
+
+				/* Remove last part of URI to determine path to Websocket in OTR */
+				var url = "ws://" + location.host + "/";
+				var parts = location.pathname.split('/');
+				for (var i = 1; i < parts.length - 2; i++) {
+					url = url + parts[i] + "/";
+				}
+				url = url + "ws";
+				console.log(url);
+				websocket = new WebSocket(url);
+				websocket.onopen = function(ev) {
+					out('CONNECTED');
+					var msg = 'Hello.';
+					out('SENT: ' + msg);
+					websocket.send(msg);
+				};
+				websocket.onclose = function(ev) {
+					out('DISCONNECTED');
+				};
+				websocket.onmessage = function(ev) {
+					if (!ev.data) {
+						out('<span style="color: blue;">PING... </span>');
+					} else {
+						data = JSON.parse(ev.data);
+						console.log(ev.data);
+						if (data._type == 'transition') {
+							out('<span style="color: blue;">Event: ' + data.tid + " " + data.event + " " +
+								data.desc + " (" + data.addr + ")" + ' </span>');
+
+							var owntracksDictionary = mapdata[devices.id()];
+							var devicesDictionary = owntracksDictionary.devices;
+							var region = owntracksDictionary.regions[data.desc];
+							if (!region) {
+								region = "";
+							}
+							var deviceDictionary = devicesDictionary[data.tid];
+							if (!deviceDictionary) {
+								deviceDictionary = {"region": "", "beacon": "", "prox": 9, "rssi": 0};
+							}
+							if (data.event == 'enter') {
+								deviceDictionary.region = data.desc;
+							} else {
+								deviceDictionary.region = "";
+								deviceDictionary.beacon = "";
+								deviceDictionary.prox = 0;
+								deviceDictionary.rssi = 0;
+							}
+							
+							devicesDictionary[data.tid] = deviceDictionary;
+							owntracksDictionary.devices = devicesDictionary;
+							mapdata[devices.id()] = owntracksDictionary
+							d3.select("#d3out")
+								.datum(mapdata)
+								.call(map);
+						} else if (data._type == 'beacon') {
+							out('<span style="color: blue;">Ranging: '
+												+ data.username + " "
+												+ data.device + " " 
+												+ data.uuid + ":"
+												+ data.major + ":"
+												+ data.minor + " "
+												+ data.prox + " "
+												+ data.rssi
+												+ ' </span>');
+
+							var owntracksDictionary = mapdata[devices.id()];
+							var devicesDictionary = owntracksDictionary.devices;
+							var devicename = data.device.substr(data.device.length - 2, data.device.length - 1);
+							var deviceDictionary = devicesDictionary[devicename];
+							if (!deviceDictionary) {
+								deviceDictionary = {"region": "", "beacon": "", "prox": 9, "rssi": 0};
+							}
+							var keys =  Object.keys(owntracksDictionary.beacons);
+							for (var o in keys) {
+								var name = keys[o];
+								var beacon = owntracksDictionary.beacons[name];
+								if (data.uuid == beacon.uuid &&
+									(data.major == 0 || data.major == beacon.major) &&
+									(data.minor == 0 || data.minor == beacon.minor)
+								) {
+									if (name == deviceDictionary.beacon ||
+										data.prox < deviceDictionary.prox || data.rssi > deviceDictionary.rssi) {
+										deviceDictionary.beacon = name;
+										deviceDictionary.prox = data.prox;
+										deviceDictionary.rssi = data.rssi;
+										break;
+									}
+								}
+							}
+							
+							devicesDictionary[devicename] = deviceDictionary;
+							owntracksDictionary.devices = devicesDictionary;
+							mapdata[devices.id()] = owntracksDictionary
+							d3.select("#d3out")
+								.datum(mapdata)
+								.call(map);
+						}
+					}
+				};
+				websocket.onerror = function(ev) {
+					out('<span style="color: red; ">ERROR: </span> ' + ev.data);
+				};
+			};
+		</script>
+		<h4>Transitions</h4>
+		<div id="output"></div>
+
+		<p>(c) 2016 by <a href="http://owntracks.org">owntracks.org</a></p>
+	</body>
+</html>

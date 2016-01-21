@@ -1,0 +1,35 @@
+{
+	"height": 1500, 
+	"width": 720, 
+
+	"canvasheight": 120, 
+	"canvaswidth": 50, 
+
+	"imagelayer": [ 
+		{ "url": "building2.svg", "x": 0, "y": 0, "height": 33.79, "width": 50.0 },
+		{ "url": "building1.svg", "x": 0, "y": 35, "height": 33.79, "width": 50.0 },
+		{ "url": "building0.svg", "x": 0, "y": 70, "height": 33.79, "width": 50.0 }
+	],
+
+	"owntracks": {
+		"regions": { 
+			"Building":		{"x": 25, "y": 60, "r": 25},
+			"kontakt.io":		{"x": 15, "y": 15, "r": 15},
+			"1st Floor":		{"x": 15, "y": 62, "r": 15},
+			"2nd Floor":		{"x": 15, "y": 95, "r": 15},
+			"car":			{"x": 15, "y": 30, "r": 4},
+			"":			{"x": 40, "y": 90, "r": 10}
+		},
+
+		"beacons": { 
+			"bluki":	        {"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 1, "minor": 1, "x": 5, "y": 5, "r": 4},
+			"kontakt.io-202":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 202, "x": 20, "y": 5, "r": 4},
+			"kontakt.io-203":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 203, "x": 40, "y": 20, "r": 4},
+			"kontakt.io-201":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 201, "x": 20, "y": 35, "r": 4},
+			"":			{"uuid": "00000000-0000-0000-0000-000000000000", "major": 0, "minor": 0, "x": 40, "y": 100, "r": 4}
+		},
+
+		"devices": { 
+		}
+	}
+}
