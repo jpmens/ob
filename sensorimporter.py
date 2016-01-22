@@ -24,20 +24,33 @@ log = logging.getLogger(__name__)
 cf = config.Config(os.getenv('SENSORIMPORTER', 'sensorimporter.conf'))
 
 r = cf.config('relayr')
-topic = r['topic']
 
 m = cf.config('mqtt')
 
+with open('XDKs.json') as data_file:    
+    xdksJson= json.load(data_file)
+    xdks = xdksJson['XDKs']
+    lut = {}
+
 def on_relayrconnect(mosq, userdata, rc):
+    global lut
     print "connected relayr"
     if rc != 0:
         log.error("Can't connect to MQTT. rc=={0}".format(rc))
         sys.exit(1)
-
-    print "subscribing to %s" % topic
-    relayr.subscribe("%s" % topic, 0)
-
+    for xdk in xdks:
+        xdkdict = xdks[xdk]
+        topic = xdkdict['topic']
+        print "subscribing to %s, %s" % (xdk, topic)
+	lut[xdkdict['deviceId']] = xdk
+        mosq.subscribe(str(topic), 0)
+	new_topic = "%s/%s/%s" % (m.get('prefix'), xdkdict['deviceId'], 'info')
+	new_payload = {'name': xdk, 'x': xdkdict['x'], 'y': xdkdict['y'], 'z': xdkdict['z']}
+	mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
     log.info("Connected to and subscribed to relayr MQTT broker")
+
+def on_subscribe(client, userdata, mid, granted_qos):
+	print "subscribed m=%d %d" % (mid, granted_qos[0])
 
 def on_relayrdisconnect(mosq, userdata, rc):
     reasons = {
@@ -74,31 +87,24 @@ def on_message(mosq, userdata, msg):
     if msg.retain == 1:
         return
 
-    print "SENSORDATA"
-
-    print msg.payload
-
     try:
-        data = json.loads(str(msg.payload))
+    	data = json.loads(str(msg.payload))
     except:
         return
 
-#    new_topic = "%s/%s/%s" % (m.get('prefix'), data['deviceId'], 'received')
-#    new_payload = data['received']
-#    print "new = ", new_topic, "=", new_payload
-#    mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
-
     readings = data['readings']
     for reading in readings:
-	    new_topic = "%s/%s/%s" % (m.get('prefix'), data['deviceId'], reading['path'])
-	    new_payload = reading['value']
-	    print "new = ", new_topic, "=", new_payload
-	    mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
+	xdk = lut[data['deviceId']]
+	new_topic = "%s/%s/%s" % (m.get('prefix'), data['deviceId'], reading['path'])
+	new_payload = reading['value']
+	print xdk + " : " + new_topic, " = ", new_payload
+	mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
 
 clientid = r.get('client_id', 'sensorimporter-{0}'.format(os.getpid()))
 
 relayr = paho.Client(clientid, clean_session=True, userdata=None, protocol=paho.MQTTv311)
 relayr.on_message = on_message
+relayr.on_subscribe = on_subscribe
 relayr.on_connect = on_relayrconnect
 relayr.on_disconnect = on_relayrdisconnect
 
