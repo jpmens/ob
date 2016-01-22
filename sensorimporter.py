@@ -44,8 +44,8 @@ def on_relayrconnect(mosq, userdata, rc):
         print "subscribing to %s, %s" % (xdk, topic)
 	lut[xdkdict['deviceId']] = xdk
         mosq.subscribe(str(topic), 0)
-	new_topic = "%s/%s/%s" % (m.get('prefix'), xdkdict['deviceId'], 'info')
-	new_payload = {'name': xdk, 'x': xdkdict['x'], 'y': xdkdict['y'], 'z': xdkdict['z']}
+	new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, 'info')
+	new_payload = {'deviceId': xdkdict['deviceId'], 'x': xdkdict['x'], 'y': xdkdict['y'], 'z': xdkdict['z']}
 	mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
     log.info("Connected to and subscribed to relayr MQTT broker")
 
@@ -95,7 +95,7 @@ def on_message(mosq, userdata, msg):
     readings = data['readings']
     for reading in readings:
 	xdk = lut[data['deviceId']]
-	new_topic = "%s/%s/%s" % (m.get('prefix'), data['deviceId'], reading['path'])
+	new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, reading['path'])
 	new_payload = reading['value']
 	print xdk + " : " + new_topic, " = ", new_payload
 	mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
