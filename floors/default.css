@@ -2,7 +2,7 @@ body {
 	font-size: 14px;
 	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	margin: 50px auto 20px;
-	width: 720px;
+	width: 800px;
 	background: #fcfcfc;
 	line-height: 1.45em;
 }
@@ -21,7 +21,7 @@ div.output {
 	background: #eee;
 	margin: 10px 0 10px 0;
 	padding: 10px;
-	width: 720px;
+	width: 600px;
 }
 
 .ui-active rect {fill: #212121}
@@ -54,3 +54,5 @@ div.output {
 .beacon {fill:#77CC77;background:#FC8D59;color:#121212}
 .device {fill:#7777CC;background:#FEE090;color:#121212}
 .proximity {fill:#CCCC77;background:#FEE090;color:#121212}
+
+.lights {fill:#FFFFFF;background:#000000;color:#000000}

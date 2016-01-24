@@ -1,1 +1,5 @@
+config.js
 data.json
+*.svg
+*.png
+*.swp
