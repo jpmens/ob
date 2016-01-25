@@ -122,6 +122,7 @@ def on_relayrmessage(mosq, userdata, msg):
 
 	readings = data['readings']
 	for reading in readings:
+		print reading
 		xdk = lut[data['deviceId']]
 		new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, reading['path'])
 		new_payload = reading['value']

@@ -25,6 +25,9 @@ cf = config.Config(os.getenv('BEACONTRACKER', 'beacontracker.conf'))
 m = cf.config('mqtt')
 base_topics = list(m['base_topics'])
 
+#CK
+userbeacons = {}
+#CK
 
 def load_blist():
     data = None
@@ -38,6 +41,7 @@ def load_blist():
 
 def on_connect(mosq, userdata, rc):
     if rc != 0:
+	print ("Can't connect to MQTT. rc=={0}".format(rc))
         log.error("Can't connect to MQTT. rc=={0}".format(rc))
         sys.exit(1)
 
@@ -97,6 +101,12 @@ def on_transition(mosq, userdata, msg):
         return
 
     if data['_type'] != 'leave':
+#CK
+	if base_topic in userbeacons:
+            del userbeacons[base_topic];
+        featured_topic = "%s/%s" % (base_topic, 'cmd')
+        mqttc.publish(featured_topic, '', qos=2, retain=False)
+#CK
         return
 
     if 't' not in data or data['t'] != 'b':
@@ -117,6 +127,8 @@ def on_beacon(mosq, userdata, msg):
     data = None
 
     base_topic, suffix = twosplit(msg.topic)
+
+
     new_topic = "%s/%s" % (m.get('prefix'), base_topic)
     beacon_topic = "%s/%s" % (m.get('beaconpub'), base_topic)
     print "new = ", new_topic
@@ -130,11 +142,33 @@ def on_beacon(mosq, userdata, msg):
         print "-- not a beacon payload"
         return
 
+    uuid    = data.get("uuid", '12345678-ABCD-EF01-2345-000000000001')
     major   = data.get("major", 0)
     minor   = data.get("minor", 0)
     acc     = data.get("acc", 99)
+    prox    = data.get("prox", 9)
+    rssi    = data.get("rssi", -99)
 
-    print major, minor, acc
+    print uuid, major, minor, acc, prox, rssi
+
+#CK
+    if base_topic in userbeacons:
+        me = userbeacons[base_topic]
+    else:
+        me = {'uuid': '', 'major': 0, 'minor': 0, 'rssi': -99, 'prox': 9, 'acc': 99}
+    if prox < me['prox'] or (me['uuid'] == uuid and me['major'] == major and me['minor'] == minor):
+        me['uuid'] = uuid
+        me['major'] = major
+        me['minor'] = minor
+        me['acc'] = acc
+        me['prox'] = prox
+        me['rssi'] = rssi
+        featured_topic = "%s/%s" % (base_topic, 'cmd')
+        payload = {'_type': 'cmd', 'action': 'action', 'content' : 'your lamp %s %d %d' % (uuid, major, minor) }
+        featured_payload = json.dumps(payload)
+        mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
+        userbeacons[base_topic] = me
+#CK
 
     for b in blist:
         if major == b[0] and minor == b[1]:
@@ -148,7 +182,6 @@ def on_beacon(mosq, userdata, msg):
     return
 
 blist = load_blist() 
-
 clientid = m.get('client_id', 'beacontracker-{0}'.format(os.getpid()))
 mqttc = paho.Client(clientid, clean_session=True, userdata=None, protocol=paho.MQTTv31)
 mqttc.on_message = on_message
