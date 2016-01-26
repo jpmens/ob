@@ -105,7 +105,9 @@ def on_transition(mosq, userdata, msg):
         if base_topic in userbeacons:
             del userbeacons[base_topic];
         featured_topic = "%s/%s" % (base_topic, 'cmd')
-        mqttc.publish(featured_topic, '', qos=2, retain=False)
+        payload = {'_type': 'cmd', 'action': 'action'}
+        featured_payload = json.dumps(payload)
+        mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
 #CK
         return
 

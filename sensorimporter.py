@@ -124,13 +124,13 @@ def on_relayrmessage(mosq, userdata, msg):
     xdk = lut[data['deviceId']]
 
     new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, 'timestamp')
-    new_payload = "%d" % time.time()
+    new_payload = "%d %d" % (time.time(), data['received'])
     print xdk + " : " + new_topic, " = ", new_payload
-    mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
+    mqttc.publish(new_topic, new_payload, qos=2, retain=True)
 
     readings = data['readings']
     for reading in readings:
-        new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, reading['path'])
+        new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, reading['meaning'])
         new_payload = reading['value']
         print xdk + " : " + new_topic, " = ", new_payload
         mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
