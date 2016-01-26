@@ -41,7 +41,7 @@ def load_blist():
 
 def on_connect(mosq, userdata, rc):
     if rc != 0:
-	print ("Can't connect to MQTT. rc=={0}".format(rc))
+        print ("Can't connect to MQTT. rc=={0}".format(rc))
         log.error("Can't connect to MQTT. rc=={0}".format(rc))
         sys.exit(1)
 
@@ -102,7 +102,7 @@ def on_transition(mosq, userdata, msg):
 
     if data['_type'] != 'leave':
 #CK
-	if base_topic in userbeacons:
+        if base_topic in userbeacons:
             del userbeacons[base_topic];
         featured_topic = "%s/%s" % (base_topic, 'cmd')
         mqttc.publish(featured_topic, '', qos=2, retain=False)
