@@ -166,16 +166,23 @@ def on_beacon(mosq, userdata, msg):
         me['prox'] = prox
         me['rssi'] = rssi
         featured_topic = "%s/%s" % (base_topic, 'cmd')
-        payload = {'_type': 'cmd', 'action': 'action', 'content' : 'your lamp %s %d %d' % (uuid, major, minor) }
+
+        content = "no matching beacon found\n%s:%d:%d" % (uuid, major, minor)
+        for b in blist:
+            if uuid == b[0] and major == b[1] and minor == b[2]:
+                print b[3]
+                content = "%s\n\n%s" % (b[3], b[4])
+
+        payload = {'_type': 'cmd', 'action': 'action', 'content' : content }
         featured_payload = json.dumps(payload)
         mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
         userbeacons[base_topic] = me
 #CK
 
     for b in blist:
-        if major == b[0] and minor == b[1]:
-            print b[2]
-            payload = json.dumps(b[2])
+        if uuid == b[0] and major == b[1] and minor == b[2]:
+            print b[3]
+            payload = "%s\n\n%s" % (b[3], b[4])
             mqttc.publish(new_topic, payload, qos=2, retain=False)
 
             mqttc.publish(beacon_topic, msg.payload, qos=2, retain=False)

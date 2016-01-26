@@ -1,5 +1,7 @@
 [
-	[1, 1, { "desc" : "JP's office", "url" : "http://lamps/lap?area51"}  ],
-	[1, 201, { "desc" : "Area-51", "url" : "http://mylamp?special-function=14" } ],
-	[1, 3, { "desc" : "t420-laptop", "url" : "http://127.0.0.1/laptop"}  ]
+	["F7826DA6-4FA2-4E98-8024-BC5B71E0893E", 1, 201, "openBerlin Right",		"https://o.o.o/right" ],
+	["F7826DA6-4FA2-4E98-8024-BC5B71E0893E", 1, 202, "openBerlin Middle",		"https://o.o.o/middle" ],
+	["F7826DA6-4FA2-4E98-8024-BC5B71E0893E", 1, 203, "openBerlin Left",		"https:/o.o.o/left" ],
+	["DEADBEEF-ABBA-CDEF-1001-000000000001", 1,   1, "Bielefeld Fireplace",		"https://o.o.o/BI" ],
+	["7777772E-626C-756B-6969-2E636F6D0001", 3,   1, "Neuss Office",		"https://o.o.o/NO" ]
 ]
