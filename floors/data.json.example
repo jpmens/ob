@@ -1,32 +1,152 @@
 {
-	"height": 1500, 
-	"width": 720, 
+	"height": 500, 
+	"width": 600, 
 
-	"canvasheight": 120, 
-	"canvaswidth": 50, 
+	"canvasheight": 100, 
+	"canvaswidth": 120, 
 
 	"imagelayer": [ 
-		{ "url": "building2.svg", "x": 0, "y": 0, "height": 33.79, "width": 50.0 },
-		{ "url": "building1.svg", "x": 0, "y": 35, "height": 33.79, "width": 50.0 },
-		{ "url": "building0.svg", "x": 0, "y": 70, "height": 33.79, "width": 50.0 }
+		{ "url": "openBerlin_72dpi.png", "x": 0, "y": 0, "height": 100, "width": 120 }
 	],
 
+	"envmap": {
+		"binSize": 3,
+		"units": "\u00B0C",
+		"XDKs": {
+			"XDK001": {"x": 105, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK002": {"x": 105, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK003": {"x": 95, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK004": {"x": 95, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK005": {"x": 95, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK006": {"x": 0, "y": 0, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK007": {"x": 0, "y": 5, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+
+			"XDK100": {"x": 52, "y": 15, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK101": {"x": 52, "y": 25, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK102": {"x": 52, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK103": {"x": 67, "y": 15, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK104": {"x": 67, "y": 25, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK105": {"x": 67, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK106": {"x": 62, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK107": {"x": 62, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK108": {"x": 62, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK109": {"x": 62, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK110": {"x": 57, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK111": {"x": 57, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK112": {"x": 57, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK113": {"x": 57, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK114": {"x": 66, "y": 47, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK115": {"x": 53, "y": 47, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK116": {"x": 52, "y": 55, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK117": {"x": 52, "y": 58, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK118": {"x": 56, "y": 58, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK119": {"x": 52, "y": 70, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK120": {"x": 56, "y": 70, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK121": {"x": 68, "y": 67, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK122": {"x": 65, "y": 67, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK123": {"x": 68, "y": 72, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK124": {"x": 68, "y": 77, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK125": {"x": 68, "y": 82, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK126": {"x": 52, "y": 76, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK127": {"x": 52, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK128": {"x": 52, "y": 86, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK129": {"x": 52, "y": 90, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK130": {"x": 54, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK131": {"x": 58, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK132": {"x": 68, "y": 86, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK133": {"x": 68, "y": 90, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK134": {"x": 66, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK135": {"x": 62, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK136": {"x": 105, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK137": {"x": 105, "y": 50, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK138": {"x": 105, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK139": {"x": 105, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK140": {"x": 105, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK141": {"x": 95, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK142": {"x": 95, "y": 50, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK143": {"x": 95, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK144": {"x": 95, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK145": {"x": 95, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK146": {"x": 0, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK148": {"x": 0, "y": 15, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK149": {"x": 0, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK153": {"x": 0, "y": 25, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+
+			"XDK154": {"x": 12, "y": 52, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK155": {"x": 28, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK156": {"x": 28, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK157": {"x": 28, "y": 16, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK158": {"x": 25, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK159": {"x": 11, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK160": {"x": 11, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK161": {"x": 11, "y": 16, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK162": {"x": 14, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK163": {"x": 15, "y": 23, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK164": {"x": 15, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK165": {"x": 15, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK166": {"x": 15, "y": 39, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK167": {"x": 25, "y": 23, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK168": {"x": 25, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK169": {"x": 25, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK170": {"x": 25, "y": 39, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK171": {"x": 0, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK172": {"x": 0, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK173": {"x": 0, "y": 45, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK174": {"x": 0, "y": 50, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK175": {"x": 0, "y": 55, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK177": {"x": 0, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK178": {"x": 0, "y": 65, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+
+			"XDK179": {"x": 0, "y": 70, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "OwnTracks"},
+			"XDK180": {"x": 0, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "OwnTracks"},
+
+			"XDK181": {"x": 12, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK182": {"x": 18, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK183": {"x": 0, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK184": {"x": 0, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+
+			"XDK185": {"x": 12, "y": 93, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK186": {"x": 16, "y": 93, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK187": {"x": 14, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK188": {"x": 14, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK189": {"x": 22, "y": 93, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK190": {"x": 26, "y": 93, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK191": {"x": 25, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK192": {"x": 25, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+
+			"XDK193": {"x": 21, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK194": {"x": 26, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0}
+		}
+	},
 	"owntracks": {
 		"regions": { 
-			"Building":		{"x": 25, "y": 60, "r": 25},
-			"kontakt.io":		{"x": 15, "y": 15, "r": 15},
-			"1st Floor":		{"x": 15, "y": 62, "r": 15},
-			"2nd Floor":		{"x": 15, "y": 95, "r": 15},
-			"car":			{"x": 15, "y": 30, "r": 4},
-			"":			{"x": 40, "y": 90, "r": 10}
+			"":			{"x": 120, "y": 100, "r": 10}
 		},
 
 		"beacons": { 
-			"bluki":	        {"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 1, "minor": 1, "x": 5, "y": 5, "r": 4},
-			"kontakt.io-202":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 202, "x": 20, "y": 5, "r": 4},
-			"kontakt.io-203":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 203, "x": 40, "y": 20, "r": 4},
-			"kontakt.io-201":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 201, "x": 20, "y": 35, "r": 4},
-			"":			{"uuid": "00000000-0000-0000-0000-000000000000", "major": 0, "minor": 0, "x": 40, "y": 100, "r": 4}
+			"202":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 202, "x": 70, "y": 37, "r": 4},
+			"203":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 203, "x": 60, "y": 45, "r": 4},
+			"201":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 201, "x": 50, "y": 37, "r": 4},
+			"":	{"uuid": "00000000-0000-0000-0000-000000000000", "major": 0, "minor": 0, "x": 40, "y": 100, "r": 4}
 		},
 
 		"devices": { 
