@@ -150,6 +150,26 @@ d3.floorplan.envmap = function() {
 		  		.text(function(d) { return d + ": " + format(data.XDKs[d].light);});
 			
 			circlesEnter.transition().style("opacity", 0.6);
+
+			var xdkLabels = vis.selectAll("text").data(Object.keys(data.XDKs));
+			var xdkLabelsEnter = xdkLabels.enter()
+				.append("text")
+				.style("font-weight", "bold")
+				.style("font-size", "9")
+				.attr("text-anchor", "middle")
+				.style("opacity",1e-6);
+
+			xdkLabels.exit().transition().style("opacity",1e-6).remove();
+
+			xdkLabels.attr("transform", function(d) {
+				return "translate(" + x(data.XDKs[d].x + data.binSize / 2) + "," +
+					y(data.XDKs[d].y + data.binSize / 2 ) + ")";
+			})
+				.text(function(d) { return d.substr(-3); });
+
+			xdkLabelsEnter
+				.transition()
+				.style("opacity",0.6);
 		});
 	}
 	
