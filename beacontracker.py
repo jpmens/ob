@@ -19,6 +19,8 @@ import config
 import math
 import numpy
 
+mapfactor = 2
+
 sys.stdout = codecs.getwriter("utf-8")(sys.__stdout__) 
 
 log = logging.getLogger(__name__)
@@ -149,8 +151,6 @@ def on_transition(mosq, userdata, msg):
     if msg.retain == 1:
         return
 
-    print "TRANSITION"
-
     print msg.payload
 
     base_topic, suffix = twosplit(msg.topic)
@@ -196,8 +196,6 @@ def on_transition(mosq, userdata, msg):
 def on_beacon(mosq, userdata, msg):
     if msg.retain == 1 or len(msg.payload) == 0:
         return
-
-    print "BEACON"
 
     data = None
 
@@ -301,31 +299,35 @@ def on_beacon(mosq, userdata, msg):
                 break
             i = i + 1
         beacon = find_beacon(visibleBeacon['uuid'], visibleBeacon['major'], visibleBeacon['minor'])
-        m = {}
-        m['x'] = beacon[5]
-        m['y'] = beacon[6]
-        m['r'] = mid
-        m3.insert(i, m)
-        #print "m3"
-        #print m3
+        if beacon != None:
+            m = {}
+            m['x'] = beacon[5] / mapfactor
+            m['y'] = beacon[6] / mapfactor
+            m['r'] = mid
+            m3.insert(i, m)
+            #print "m3"
+            print m3
 
-    locationTopic = "%s/%s" % (mqttConf.get('prefix'), base_topic)
-    (x, y) =  trilateration(
-        m3[0]['x'],
-        m3[0]['y'],
-        m3[0]['r'],
-        m3[1]['x'],
-        m3[1]['y'],
-        m3[1]['r'],
-        m3[2]['x'],
-        m3[2]['y'],
-        m3[2]['r']
-    )
+    x = 0;
+    y = 0;
+    if len(m3) >= 3:
+        locationTopic = "%s/%s" % (mqttConf.get('prefix'), base_topic)
+        (x, y) =  trilateration(
+            m3[0]['x'],
+            m3[0]['y'],
+            m3[0]['r'],
+            m3[1]['x'],
+            m3[1]['y'],
+            m3[1]['r'],
+            m3[2]['x'],
+            m3[2]['y'],
+            m3[2]['r']
+        )
     if numpy.isnan(x) or numpy.isnan(y):
         x = 0;
         y = 0;
 
-    locationDict = {'tid': tid, 'x': x, 'y': y}
+    locationDict = {'tid': tid, 'x': x * mapfactor, 'y': y * mapfactor}
     locationPayload = json.dumps(locationDict)
     print locationTopic + ": " + locationPayload
     mqttc.publish(locationTopic, locationPayload, qos=2, retain=False)

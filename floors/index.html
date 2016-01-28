@@ -90,8 +90,7 @@
 						}
 					}	
 					
-					console.log(count);
-					if (count % 16 == 0) {
+					if (count % 500 == 0) {
 						d3.select("#d3out")
 							.datum(mapdata)
 							.call(map);

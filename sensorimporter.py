@@ -88,7 +88,6 @@ def subscriber():
         time.sleep(0.1)
     log.info("Connected to and subscribed to relayr MQTT broker")
 
-
 def on_relayrconnect(mosq, userdata, rc):
     print "connected relayr"
     if rc != 0:
