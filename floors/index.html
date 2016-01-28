@@ -14,6 +14,7 @@
 			<script type="text/javascript" src="regions.js"></script>
 			<script type="text/javascript" src="beacons.js"></script>
 			<script type="text/javascript" src="devices.js"></script>
+			<script type="text/javascript" src="positions.js"></script>
 			<script type="text/javascript" src="proximities.js"></script>
 			<script type="text/javascript" src="envmap.js"></script>
 
@@ -48,26 +49,48 @@
 					payload = message.payloadString;
 
 					console.log("onMessageArrived: " + topic + ": " + payload);
-					count++;
 					var parts = topic.split('/');
 
-					var envmapDictionary = mapdata[envmap.id()];
-					var sensorname = parts[1];
-					var sensorDictionary = envmapDictionary['XDKs'][sensorname];
-					if (sensorDictionary) {
-						if (parts[2] == 'temperature') {
-							sensorDictionary['temperature'] = payload;			
-						} else if (parts[2] == 'light') {
-							sensorDictionary['light'] = payload;			
-						} else if (parts[2] == 'humidity') {
-							sensorDictionary['humidity'] = payload;			
+					if (parts[0] == "sensors") {
+						count++;
+						var envmapDictionary = mapdata[envmap.id()];
+						var sensorname = parts[1];
+						var sensorDictionary = envmapDictionary['XDKs'][sensorname];
+						if (sensorDictionary) {
+							if (parts[2] == 'temperature') {
+								sensorDictionary['temperature'] = payload;			
+							} else if (parts[2] == 'light') {
+								sensorDictionary['light'] = payload;			
+							} else if (parts[2] == 'humidity') {
+								sensorDictionary['humidity'] = payload;			
+							}
 						}
-					}
-							
-					sensorDictionary[sensorname] = sensorDictionary;
-					envmapDictionary['XDKs'][sensorname] = sensorDictionary;
-					mapdata[envmap.id()] = envmapDictionary;
-				
+								
+						sensorDictionary[sensorname] = sensorDictionary;
+						envmapDictionary['XDKs'][sensorname] = sensorDictionary;
+						mapdata[envmap.id()] = envmapDictionary;
+
+					} else if (parts[0] == "positions") {
+						var json = JSON.parse(payload);
+						if (json) {
+							count++;
+							var owntracksDictionary = mapdata[positions.id()];
+							var positionsDictionary = owntracksDictionary['positions']
+							var position = {};
+							tid = json['tid'];
+							x = json['x'];
+							y = json['y'];
+							position['tid'] = tid;
+							position['x'] = x;
+							position['y'] = y;
+							console.log(position);
+							positionsDictionary[tid] = position;
+							owntracksDictionary['posistions'] = positionsDictionary;
+							mapdata[positions.id()] = owntracksDictionary;
+						}
+					}	
+					
+					console.log(count);
 					if (count % 16 == 0) {
 						d3.select("#d3out")
 							.datum(mapdata)
@@ -82,6 +105,8 @@
 						console.log("Host: " + host + ", Port:" + port);
 						console.log("subscribe to " + topic);
 						mqtt.subscribe(topic, {qos: 0});
+						console.log("subscribe to " + topic2);
+						mqtt.subscribe(topic2, {qos: 0});
 					},
 					onFailure: function (message) {
 						console.log(message.errorMessage);
@@ -106,6 +131,7 @@
 			var regions;
 			var beacons;
 			var devices;
+			var positions;
 			var proximities;
 			var map;
 
@@ -124,6 +150,7 @@
 				regions = d3.floorplan.regions();
 				beacons = d3.floorplan.beacons();
 				devices = d3.floorplan.devices();
+				positions = d3.floorplan.positions();
 				proximities = d3.floorplan.proximities();
 				envmap = d3.floorplan.envmap();
 
@@ -131,6 +158,7 @@
 				map.addLayer(regions);
 				map.addLayer(beacons);
 				map.addLayer(devices);
+				map.addLayer(positions);
 				map.addLayer(proximities);
 				map.addLayer(envmap);
 
@@ -138,6 +166,7 @@
 				mapdata[regions.id()] =  data.owntracks;
 				mapdata[beacons.id()] =  data.owntracks;
 				mapdata[devices.id()] =  data.owntracks;
+				mapdata[positions.id()] =  data.owntracks;
 				mapdata[proximities.id()] =  data.owntracks;
 				mapdata[envmap.id()] =  data.envmap;
 

@@ -4,3 +4,4 @@ var useTLS = true;
 var username = null;
 var password = null;
 var topic = 'sensors/+/+';
+var topic2 = 'positions/+/+/+';
