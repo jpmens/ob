@@ -6,8 +6,8 @@ loglevel   = DEBUG
 [mqtt]
 host = localhost
 port = 1883
-username = None
-password = None
+username = user
+password = pass
 client_id = 'yyyx02'
 ; ca_certs = None
 ;tls_version = 'tlsv1'
@@ -16,9 +16,9 @@ client_id = 'yyyx02'
 
 base_topics = [ 'owntracks/+' ]
 
-beaconlist = "beacon-lamps.json"
+beaconlist = "data.json"
 
 # MQTT topic prefix; user's base topic (owntracks/jpm/5s) will be appended to this with a slash
-prefix = "lights"
-
-beaconpub = "beacons"
+positionprefix = 'positions'
+beaconprefix = 'beacons'
+regionprefix = 'regions'

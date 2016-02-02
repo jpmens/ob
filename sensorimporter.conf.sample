@@ -6,25 +6,24 @@ loglevel   = DEBUG
 [relayr]
 host = 'mqtt.relayr.io'
 port = 1883
-username = 'user'
-password = 'pass'
-topic = '/v1/topic'
-;client_id = 'yyyx02'
+username = user
+password = pass
+client_id = 'owntracks-i'
 ;ca_certs = None
 ;tls_version = 'tlsv1'
 ;tls_insecure = False
 
 [mqtt]
-host = localhost
+host = 'localhost'
 port = 1883
-username = None
-password = None
+username = user
+password = pass
 ;client_id = 'yyyx02'
 ; ca_certs = None
 ;tls_version = 'tlsv1'
 ;tls_insecure = False
 
-beaconlist = "beacon-lamps.json"
+xdklist = "data.json"
 
 # MQTT topic prefix; user's base topic (owntracks/jpm/5s) will be appended to this with a slash
 prefix = "sensors"
