@@ -70,9 +70,18 @@ except Exception, e:
 #########################
 lut = {}
 
-with open('XDKs.json') as data_file:    
-    xdksJson= json.load(data_file)
-    xdks = xdksJson['XDKs']
+def load_xlist():
+    data = None
+    try:
+        data = json.loads(open(m['xdklist']).read())
+    except Exception, e:
+        print str(e)
+        sys.exit(1)
+
+    return data
+
+xdksJson= load_xlist()
+xdks = xdksJson['XDKs']
 
 def subscriber():
     for xdk in xdks:

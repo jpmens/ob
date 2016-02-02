@@ -50,7 +50,7 @@ d3.floorplan.beacons = function() {
 				.attr("r", function(d) { return y(data.beacons[d].r); })
 				.attr("class", "beacon");
 
-			beaconsEnter.transition().style("opacity", 0.6);
+			beaconsEnter.transition().style("opacity", 0.2);
 		
 			var beaconLabels = vis.selectAll("text").data(Object.keys(data.beacons));
 			var beaconLabelsEnter = beaconLabels.enter()
@@ -69,7 +69,7 @@ d3.floorplan.beacons = function() {
 
 			beaconLabelsEnter
 				.transition()
-				.style("opacity",0.6);
+				.style("opacity",0.2);
 		});
 	}
 	

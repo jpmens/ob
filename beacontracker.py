@@ -100,10 +100,9 @@ def load_blist():
 
     return data
 
-
 def find_beacon(uuid, major, minor):
-    for b in blist:
-            if uuid == b[0] and major == b[1] and minor == b[2]:
+    for b in beacons:
+            if uuid == b['uuid'] and major == b['major'] and minor == b['minor']:
                 return b
     return None
 
@@ -145,8 +144,6 @@ def on_message(mosq, userdata, msg):
     if msg.retain == 1:
         return
 
-    print "Normal message"
-
 def on_transition(mosq, userdata, msg):
     if msg.retain == 1:
         return
@@ -164,34 +161,42 @@ def on_transition(mosq, userdata, msg):
         print "-- not a transition payload"
         return
 
-    if data['_type'] != 'leave':
-        print "-- not leaving"
-        return
-
     if 't' not in data or data['t'] != 'b':
         print "-- not a 't:b' payload"
         return
 
-    # User is leaving a beacon; any beacon. Clear out the retained
-    # lamp position for this
+    if data['event'] == 'enter' and 'desc' in data:
+        # clear region entry when leaving region
+        regionTopic = "%s/%s" % (mqttConf.get('regionprefix'), base_topic)
+        payload = {'tid': tid, 'tst': tst, 'region': data['desc']}
+        regionPayload = json.dumps(payload)
+        mqttc.publish(regionTopic, regionPayload, qos=2, retain=False)
 
-    # clear closestBeacon entry when leaving region
-    if base_topic in closestBeacons:
-        del closestBeacons[base_topic];
-    featured_topic = "%s/%s" % (base_topic, 'cmd')
-    payload = {'_type': 'cmd', 'action': 'action'}
-    featured_payload = json.dumps(payload)
-    mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
+    elif data['event'] == 'leave':
 
-    # clear device entry when leaving region
-    if base_topic in devices:
-        del devices[base_topic];
-    locationTopic = "%s/%s" % (mqttConf.get('prefix'), base_topic)
-    locationDict = {'tid': data['tid'], 'y': 0, 'y': 0}
-    locationPayload = json.dumps(locationDict)
-    mqttc.publish(locationTopic, locationPayload, qos=2, retain=False)
-    print locationTopic + ": " + locationPayload
-    mqttc.publish(locationTopic, locationPayload, qos=2, retain=False)
+        # clear closestBeacon entry when leaving region
+        if base_topic in closestBeacons:
+            del closestBeacons[base_topic];
+
+        # clear featured content when leaving region
+        featured_topic = "%s/%s" % (base_topic, 'cmd')
+        payload = {'_type': 'cmd', 'tst': tst, 'action': 'action'}
+        featured_payload = json.dumps(payload)
+        mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
+        
+        # clear beacon entry when leaving region
+        beaconTopic = "%s/%s" % (mqttConf.get('beaconprefix'), base_topic)
+        mqttc.publish(beaconTopic, null, qos=2, retain=False)
+
+        # clear region entry when leaving region
+        regionTopic = "%s/%s" % (mqttConf.get('regionprefix'), base_topic)
+        mqttc.publish(regionTopic, null, qos=2, retain=False)
+
+        # clear position entry when leaving region
+        if base_topic in devices:
+            del devices[base_topic];
+        positionTopic = "%s/%s" % (mqttConf.get('positionprefix'), base_topic)
+        mqttc.publish(positionTopic, null, qos=2, retain=False)
 
 def on_beacon(mosq, userdata, msg):
     if msg.retain == 1 or len(msg.payload) == 0:
@@ -232,24 +237,30 @@ def on_beacon(mosq, userdata, msg):
         me['acc'] = acc
         me['prox'] = prox
         me['rssi'] = rssi
-        featured_topic = "%s/%s" % (base_topic, 'cmd')
 
-        content = "no matching beacon found\n%s:%d:%d" % (uuid, major, minor)
+        closestBeacons[base_topic] = me
+        
+        # build featured content message
+        featured_topic = "%s/%s" % (base_topic, 'cmd')
+        featured_content = "no matching beacon found\n%s:%d:%d" % (uuid, major, minor)
         b = find_beacon(uuid, major, minor)
         if b != None:
-                content = "%s\n\n%s" % (b[3], b[4])
-
-        payload = {'_type': 'cmd', 'action': 'action', 'content' : content }
+            featured_content = "%s\n\n%s" % (b['desc'], b['URL'])
+        payload = {'_type': 'cmd', 'tst': tst, 'action': 'action', 'content' : featured_content }
         featured_payload = json.dumps(payload)
         mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
-        closestBeacons[base_topic] = me
+
+        # build beacon message
+        beaconTopic = "%s/%s" % (mqttConf.get('beaconprefix'), base_topic)
+        beaconJson = {'tid': tid, 'tst': tst, 'uuid': uuid, 'major': major, 'minor': minor}
+        beaconPayload = json.dumps(beaconJson)
+        mqttc.publish(beaconTopic, beaconPayload, qos=2, retain=False)
 
     # get device
     if base_topic in devices:
         device = devices[base_topic]
     else:
         device = {'tid': tid, 'visibleBeacons': {} }
-    #print device
 
     # get beacon
     beaconString = "%s:%d:%d" % (uuid, major, minor)
@@ -258,7 +269,6 @@ def on_beacon(mosq, userdata, msg):
         beacon = visibleBeacons[beaconString]
     else:
         beacon = {'uuid': uuid, 'major': major, 'minor': minor, 'measurements': []} 
-    #print beacon
 
     # measurement keep up to 5 past measurements
     measurements = beacon['measurements']
@@ -272,7 +282,6 @@ def on_beacon(mosq, userdata, msg):
     visibleBeacons[beaconString] = beacon
     device['visibleBeacons'] = visibleBeacons
     devices[base_topic] = device
-    #print devices
 
     if len(visibleBeacons) < 3:
         return
@@ -281,7 +290,6 @@ def on_beacon(mosq, userdata, msg):
     m3 = []
     for visibleBeaconString in visibleBeacons:
         visibleBeacon = visibleBeacons[visibleBeaconString]
-        #print visibleBeacon
 
         # get average of last measurements
         measurements = visibleBeacon['measurements']
@@ -301,17 +309,16 @@ def on_beacon(mosq, userdata, msg):
         beacon = find_beacon(visibleBeacon['uuid'], visibleBeacon['major'], visibleBeacon['minor'])
         if beacon != None:
             m = {}
-            m['x'] = beacon[5] / mapfactor
-            m['y'] = beacon[6] / mapfactor
+            m['x'] = beacon['x'] / mapfactor
+            m['y'] = beacon['y'] / mapfactor
             m['r'] = mid
             m3.insert(i, m)
-            #print "m3"
-            print m3
+    print m3
 
+    positionTopic = "%s/%s" % (mqttConf.get('positionprefix'), base_topic)
     x = 0;
     y = 0;
     if len(m3) >= 3:
-        locationTopic = "%s/%s" % (mqttConf.get('prefix'), base_topic)
         (x, y) =  trilateration(
             m3[0]['x'],
             m3[0]['y'],
@@ -327,13 +334,15 @@ def on_beacon(mosq, userdata, msg):
         x = 0;
         y = 0;
 
-    locationDict = {'tid': tid, 'x': x * mapfactor, 'y': y * mapfactor}
-    locationPayload = json.dumps(locationDict)
-    print locationTopic + ": " + locationPayload
-    mqttc.publish(locationTopic, locationPayload, qos=2, retain=False)
+    if x != 0 or y != 0:
+        positionDict = {'tid': tid, 'tst': tst, 'x': x * mapfactor, 'y': y * mapfactor}
+        positionPayload = json.dumps(positionDict)
+        mqttc.publish(positionTopic, positionPayload, qos=2, retain=False)
     return
 
-blist = load_blist() 
+beaconlist = load_blist() 
+beacons = beaconlist['Beacons']
+
 clientid = mqttConf.get('client_id', 'beacontracker-{0}'.format(os.getpid()))
 mqttc = paho.Client(clientid, clean_session=True, userdata=None, protocol=paho.MQTTv31)
 mqttc.on_message = on_message

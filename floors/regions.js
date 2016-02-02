@@ -50,7 +50,7 @@ d3.floorplan.regions = function() {
 				.attr("r", function(d) { return y(data.regions[d].r); })
 				.attr("class", "region");
 
-			regionsEnter.transition().style("opacity", 0.6);
+			regionsEnter.transition().style("opacity", 0.2);
 		
 			// regionLabels
 			var regionLabels = vis.selectAll("text").data(Object.keys(data.regions));
@@ -70,10 +70,10 @@ d3.floorplan.regions = function() {
 
 			regionLabelsEnter
 				.transition()
-				.style("opacity",0.6);
+				.style("opacity",0.2);
 		});
 	}
-	
+    
 	regions.xScale = function(scale) {
 		if (! arguments.length) return x;
 		x = scale;
