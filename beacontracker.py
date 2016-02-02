@@ -310,7 +310,7 @@ def on_beacon(mosq, userdata, msg):
             if mid < m3[i]['r']:
                 break
             i = i + 1
-        beacon = find_beacon(visibleBeacon['uuid'], visibleBeacon['major'], visibleBeacon['minor'])
+        (beaconName, beacon) = find_beacon(visibleBeacon['uuid'], visibleBeacon['major'], visibleBeacon['minor'])
         if beacon != None:
             m = {}
             m['x'] = beacon['x'] / mapfactor

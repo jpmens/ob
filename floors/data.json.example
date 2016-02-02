@@ -13,125 +13,125 @@
 		"binSize": 3,
 		"units": "\u00B0C",
 		"XDKs": {
-			"XDK001": {"x": 105, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK002": {"x": 105, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK003": {"x": 95, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK004": {"x": 95, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK005": {"x": 95, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK001": {"x": 104, "y": 72, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK002": {"x": 104, "y": 77, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK003": {"x":  94, "y": 77, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK004": {"x":  94, "y": 82, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK005": {"x":  94, "y": 72, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK105": {"x": 52, "y": 15, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK103": {"x": 52, "y": 25, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK149": {"x": 52, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK108": {"x": 67, "y": 15, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK110": {"x": 67, "y": 25, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK112": {"x": 67, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK111": {"x": 68, "y": 33, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK107": {"x": 62, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK109": {"x": 62, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK191": {"x": 62, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK113": {"x": 62, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK106": {"x": 57, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK104": {"x": 57, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK102": {"x": 57, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK100": {"x": 57, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK105": {"x":  52, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK103": {"x":  52, "y": 22, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK149": {"x":  52, "y": 32, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK108": {"x":  66, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK110": {"x":  66, "y": 22, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK112": {"x":  66, "y": 32, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK111": {"x":  67, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK107": {"x":  61, "y":  7, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK109": {"x":  61, "y": 17, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK191": {"x":  61, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK113": {"x":  61, "y": 37, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK106": {"x":  56, "y":  7, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK104": {"x":  56, "y": 17, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK102": {"x":  56, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK100": {"x":  56, "y": 37, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK115": {"x": 66, "y": 47, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK115": {"x":  65, "y": 45, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK150": {"x": 53, "y": 47, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK150": {"x":  52, "y": 45, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK116": {"x": 52, "y": 55, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK117": {"x": 52, "y": 58, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK118": {"x": 56, "y": 58, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK116": {"x":  51, "y": 54, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK117": {"x":  51, "y": 57, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK118": {"x":  55, "y": 57, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK119": {"x": 52, "y": 70, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK120": {"x": 56, "y": 70, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK119": {"x":  51, "y": 69, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK120": {"x":  55, "y": 69, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK121": {"x": 68, "y": 67, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK122": {"x": 65, "y": 67, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK123": {"x": 68, "y": 72, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK121": {"x":  67, "y": 66, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK122": {"x":  64, "y": 66, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK123": {"x":  67, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK124": {"x": 68, "y": 77, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK124": {"x":  67, "y": 76, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK125": {"x": 68, "y": 82, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK125": {"x":  67, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK126": {"x": 52, "y": 76, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK127": {"x": 52, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK126": {"x":  51, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK127": {"x":  51, "y": 79, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK128": {"x": 52, "y": 86, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK129": {"x": 52, "y": 90, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK130": {"x": 54, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK131": {"x": 58, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK128": {"x":  51, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK129": {"x":  51, "y": 89, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK130": {"x":  53, "y": 91, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK131": {"x":  57, "y": 91, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK132": {"x": 68, "y": 86, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK133": {"x": 68, "y": 90, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK134": {"x": 66, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK135": {"x": 62, "y": 92, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK132": {"x":  67, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK133": {"x":  67, "y": 89, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK134": {"x":  65, "y": 91, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK135": {"x":  61, "y": 91, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK136": {"x": 105, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK137": {"x": 105, "y": 50, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK138": {"x": 105, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK139": {"x": 105, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK140": {"x": 105, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK141": {"x": 95, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK142": {"x": 95, "y": 50, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK143": {"x": 95, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK144": {"x": 95, "y": 30, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK145": {"x": 95, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK136": {"x": 104, "y": 57, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK137": {"x": 104, "y": 47, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK138": {"x": 104, "y": 37, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK139": {"x": 104, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK140": {"x": 104, "y": 17, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK141": {"x":  94, "y": 57, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK142": {"x":  94, "y": 47, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK143": {"x":  94, "y": 37, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK144": {"x":  94, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK145": {"x":  94, "y": 17, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK154": {"x": 12, "y": 52, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK154": {"x":  13, "y": 51, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK155": {"x": 28, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK156": {"x": 28, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK157": {"x": 28, "y": 16, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK158": {"x": 25, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK155": {"x":  24, "y":  6, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK156": {"x":  27, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK157": {"x":  27, "y": 14, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK158": {"x":  27, "y":  6, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK159": {"x": 11, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK160": {"x": 11, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK161": {"x": 11, "y": 16, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK162": {"x": 14, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK159": {"x":  10, "y":  6, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK160": {"x":  10, "y": 10, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK161": {"x":  10, "y": 14, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK162": {"x":  13, "y":  6, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK163": {"x": 15, "y": 23, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK164": {"x": 15, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK165": {"x": 15, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK166": {"x": 15, "y": 39, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK167": {"x": 25, "y": 23, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK168": {"x": 25, "y": 27, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK169": {"x": 25, "y": 35, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK170": {"x": 25, "y": 39, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK163": {"x":  13, "y": 22, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK164": {"x":  13, "y": 26, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK165": {"x":  13, "y": 34, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK166": {"x":  13, "y": 38, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK167": {"x":  23, "y": 22, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK168": {"x":  23, "y": 26, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK169": {"x":  23, "y": 34, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK170": {"x":  23, "y": 38, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK181": {"x": 12, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK182": {"x": 12, "y": 78, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK185": {"x": 12, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK186": {"x": 12, "y": 93, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK181": {"x":  11, "y": 69, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK182": {"x":  11, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK185": {"x":  11, "y": 82, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK186": {"x":  11, "y": 90, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK193": {"x": 26, "y": 71, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK194": {"x": 26, "y": 78, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK189": {"x": 26, "y": 85, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
-			"XDK190": {"x": 26, "y": 93, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK193": {"x":  25, "y": 69, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK194": {"x":  25, "y": 75, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK189": {"x":  25, "y": 82, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
+			"XDK190": {"x":  25, "y": 90, "temperature": 0.0, "humidity": 0.0, "light": 0.0},
 
-			"XDK006": {"x": 0, "y":  0, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK007": {"x": 0, "y":  4, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK101": {"x": 0, "y": 88, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK114": {"x": 0, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK146": {"x": 0, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK148": {"x": 0, "y": 16, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK153": {"x": 0, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK171": {"x": 0, "y": 24, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK172": {"x": 0, "y": 28, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK173": {"x": 0, "y": 32, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK174": {"x": 0, "y": 36, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK175": {"x": 0, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK177": {"x": 0, "y": 44, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK178": {"x": 0, "y": 48, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK179": {"x": 0, "y": 52, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "OwnTracks"},
-			"XDK180": {"x": 0, "y": 56, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "OwnTracks"},
-			"XDK183": {"x": 0, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK184": {"x": 0, "y": 64, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK187": {"x": 0, "y": 68, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK188": {"x": 0, "y": 72, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK191": {"x": 0, "y": 76, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK192": {"x": 0, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
-			"XDK999": {"x": 0, "y": 84, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"}
+			"XDK006": {"x":  0, "y":  0, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK007": {"x":  0, "y":  4, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK101": {"x":  0, "y": 88, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK114": {"x":  0, "y":  8, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK146": {"x":  0, "y": 12, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK148": {"x":  0, "y": 16, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK153": {"x":  0, "y": 20, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK171": {"x":  0, "y": 24, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK172": {"x":  0, "y": 28, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK173": {"x":  0, "y": 32, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK174": {"x":  0, "y": 36, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK175": {"x":  0, "y": 40, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK177": {"x":  0, "y": 44, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK178": {"x":  0, "y": 48, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK179": {"x":  0, "y": 52, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "OwnTracks"},
+			"XDK180": {"x":  0, "y": 56, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "OwnTracks"},
+			"XDK183": {"x":  0, "y": 60, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK184": {"x":  0, "y": 64, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK187": {"x":  0, "y": 68, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK188": {"x":  0, "y": 72, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK191": {"x":  0, "y": 76, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK192": {"x":  0, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
+			"XDK999": {"x":  0, "y": 84, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"}
 		}
 	},
 	"owntracks": {
@@ -216,6 +216,171 @@
 					{"x": 101.10, "y": 92.70},
 					{"x": 101.10, "y": 95.25},
 					{"x":  89.70, "y": 95.25}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "eCafe",
+				"name": "eCafe",
+				"points": [
+					{"x": 10.00, "y":  67.70},
+					{"x": 30.10, "y":  67.70},
+					{"x": 30.10, "y":  95.05},
+					{"x": 10.00, "y":  95.05}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "Conference2",
+				"name": "Conference2",
+				"points": [
+					{"x": 10.00, "y":   5.50},
+					{"x": 20.00, "y":   5.50},
+					{"x": 20.00, "y":  17.70},
+					{"x": 10.00, "y":  17.70}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "Conference1",
+				"name": "Conference1",
+				"points": [
+					{"x": 20.00, "y":   5.50},
+					{"x": 30.00, "y":   5.50},
+					{"x": 30.00, "y":  17.70},
+					{"x": 20.00, "y":  17.70}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "DemoArea",
+				"name": "DemoArea",
+				"points": [
+					{"x": 10.00, "y":  17.90},
+					{"x": 30.00, "y":  17.90},
+					{"x": 30.00, "y":  49.05},
+					{"x": 10.00, "y":  49.05}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "ServerRoom",
+				"name": "ServerRoom",
+				"points": [
+					{"x": 10.00, "y":  49.60},
+					{"x": 18.00, "y":  49.60},
+					{"x": 18.00, "y":  55.60},
+					{"x": 10.00, "y":  55.60}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "PartnerRoom1",
+				"name": "PartnerRoom1",
+				"points": [
+					{"x": 60.10, "y":  83.90},
+					{"x": 70.30, "y":  83.90},
+					{"x": 70.30, "y":  95.00},
+					{"x": 60.10, "y":  95.00}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "QuietRoom4",
+				"name": "QuietRoom4",
+				"points": [
+					{"x": 62.75, "y":  83.70},
+					{"x": 70.30, "y":  83.70},
+					{"x": 70.30, "y":  79.60},
+					{"x": 62.75, "y":  79.60}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "QuietRoom3",
+				"name": "QuietRoom3",
+				"points": [
+					{"x": 62.75, "y":  79.40},
+					{"x": 70.30, "y":  79.40},
+					{"x": 70.30, "y":  75.30},
+					{"x": 62.75, "y":  75.30}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "QuietRoom1",
+				"name": "QuietRoom1",
+				"points": [
+					{"x": 62.75, "y":  49.20},
+					{"x": 70.30, "y":  49.20},
+					{"x": 70.30, "y":  44.75},
+					{"x": 62.75, "y":  44.75}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "MeetingRoom",
+				"name": "MeetingRoom",
+				"points": [
+					{"x": 49.65, "y":  60.70},
+					{"x": 58.15, "y":  60.70},
+					{"x": 58.15, "y":  53.75},
+					{"x": 49.65, "y":  53.75}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "APRMeetingRoom",
+				"name": "APRMeetingRoom",
+				"points": [
+					{"x": 49.65, "y":  73.65},
+					{"x": 58.35, "y":  73.65},
+					{"x": 58.35, "y":  67.80},
+					{"x": 49.65, "y":  67.80}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "ActivityRoom",
+				"name": "ActivityRoom",
+				"points": [
+					{"x": 49.65, "y":  83.65},
+					{"x": 62.55, "y":  83.65},
+					{"x": 62.55, "y":  73.85},
+					{"x": 49.65, "y":  73.85}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "QuietRoom2",
+				"name": "QuietRoom2",
+				"points": [
+					{"x": 49.65, "y":  49.20},
+					{"x": 57.50, "y":  49.20},
+					{"x": 57.50, "y":  44.75},
+					{"x": 49.65, "y":  44.75}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "ConferenceRoom",
+				"name": "ConferenceRoom",
+				"points": [
+					{"x": 62.75, "y":  75.10},
+					{"x": 70.30, "y":  75.10},
+					{"x": 70.30, "y":  65.30},
+					{"x": 62.75, "y":  65.30}
+				]
+			},
+			{
+				"value": 0.0,
+				"id": "PartnerRoom2",
+				"name": "PartnerRoom2",
+				"points": [
+					{"x": 49.65, "y":  83.90},
+					{"x": 59.90, "y":  83.90},
+					{"x": 59.90, "y":  95.00},
+					{"x": 49.65, "y":  95.00}
 				]
 			},
 			{
