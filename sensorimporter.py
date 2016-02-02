@@ -69,6 +69,7 @@ except Exception, e:
 # subscribe to relayr
 #########################
 lut = {}
+rooms = {}
 
 def load_xlist():
     data = None
@@ -89,6 +90,11 @@ def subscriber():
         xdkdict = xdks[xdk]
         topic = xdkdict['topic']
         lut[xdkdict['deviceId']] = xdk
+        if 'room' in xdkdict:
+            room = xdkdict['room']
+            if room not in rooms:
+                rooms[room] = {}
+
         (result, mid) = relayr.subscribe(str(topic), 0)
         print "subscribing to %s, %s: r%d,m%d" % (xdk, topic, result, mid)
         new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, 'info')
@@ -142,6 +148,31 @@ def on_relayrmessage(mosq, userdata, msg):
         new_payload = reading['value']
         print xdk + " : " + new_topic, " = ", new_payload
         mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
+
+        meaning = reading['meaning']
+        if meaning == "temperature" or meaning == "pressure" or meaning == "humidity" or meaning == "light":
+            xdkDict = xdks[xdk]
+            if 'room' in xdkDict:
+                room = xdkDict['room']
+                roomDict = rooms[room]
+
+                if 'n-' + meaning in roomDict:
+                    n = roomDict['n-' + meaning]
+                else:
+                    n = 0
+                if 'total-' + meaning in roomDict:
+                    total = roomDict['total-' + meaning]
+                else:
+                    total = 0
+                n = n + 1
+                total = total + float(reading['value'])
+                avg = total / n 
+                roomDict['n-' + meaning] = n
+                roomDict['total-' + meaning] = total
+                new_room_topic = "%s/rooms/%s/%s" % (m.get('prefix'), room, meaning)
+                new_room_payload = avg
+                print "room" + room + " : " + new_room_topic, " = ", new_room_payload
+                mqttc.publish(new_room_topic, json.dumps(new_room_payload), qos=2, retain=True)
 
 r = cf.config('relayr')
 

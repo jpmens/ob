@@ -101,10 +101,11 @@ def load_blist():
     return data
 
 def find_beacon(uuid, major, minor):
-    for b in beacons:
-            if uuid == b['uuid'] and major == b['major'] and minor == b['minor']:
-                return b
-    return None
+    for beaconName in beacons:
+            beacon = beacons[beaconName]
+            if uuid == beacon['uuid'] and major == beacon['major'] and minor == beacon['minor']:
+                return (beaconName, beacon)
+    return (None, None)
 
 def on_connect(mosq, userdata, rc):
     if rc != 0:
@@ -243,9 +244,9 @@ def on_beacon(mosq, userdata, msg):
         # build featured content message
         featured_topic = "%s/%s" % (base_topic, 'cmd')
         featured_content = "no matching beacon found\n%s:%d:%d" % (uuid, major, minor)
-        b = find_beacon(uuid, major, minor)
-        if b != None:
-            featured_content = "%s\n\n%s" % (b['desc'], b['URL'])
+        (beaconName, beacon) = find_beacon(uuid, major, minor)
+        if beacon != None:
+            featured_content = "%s\n\n%s" % (beacon['desc'], beacon['URL'])
         payload = {'_type': 'cmd', 'tst': tst, 'action': 'action', 'content' : featured_content }
         featured_payload = json.dumps(payload)
         mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
@@ -253,6 +254,9 @@ def on_beacon(mosq, userdata, msg):
         # build beacon message
         beaconTopic = "%s/%s" % (mqttConf.get('beaconprefix'), base_topic)
         beaconJson = {'tid': tid, 'tst': tst, 'uuid': uuid, 'major': major, 'minor': minor}
+        if beacon != None:
+            beaconJson['name'] = beaconName
+            beaconJson['room'] = beacon['room']
         beaconPayload = json.dumps(beaconJson)
         mqttc.publish(beaconTopic, beaconPayload, qos=2, retain=False)
 

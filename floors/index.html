@@ -18,6 +18,7 @@
 			<script type="text/javascript" src="proximities.js"></script>
 			<script type="text/javascript" src="envmap.js"></script>
 			<script type="text/javascript" src="overlays.js"></script>
+			<script type="text/javascript" src="heatmap.js"></script>
 
 		<style type="text/css">
 			@import url('https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css');
@@ -54,22 +55,39 @@
 
 					if (parts[0] == "sensors") {
 						count++;
-						var envmapDictionary = mapdata[envmap.id()];
-						var sensorname = parts[1];
-						var sensorDictionary = envmapDictionary['XDKs'][sensorname];
-						if (sensorDictionary) {
-							if (parts[2] == 'temperature') {
-								sensorDictionary['temperature'] = payload;			
-							} else if (parts[2] == 'light') {
-								sensorDictionary['light'] = payload;			
-							} else if (parts[2] == 'humidity') {
-								sensorDictionary['humidity'] = payload;			
+						if (parts.length == 3) {
+							var envmapDictionary = mapdata[envmap.id()];
+							var sensorname = parts[1];
+							var sensorDictionary = envmapDictionary['XDKs'][sensorname];
+							if (sensorDictionary) {
+								if (parts[2] == 'temperature') {
+									sensorDictionary['temperature'] = payload;			
+								} else if (parts[2] == 'light') {
+									sensorDictionary['light'] = payload;			
+								} else if (parts[2] == 'humidity') {
+									sensorDictionary['humidity'] = payload;			
+								}
 							}
-						}
 								
-						sensorDictionary[sensorname] = sensorDictionary;
-						envmapDictionary['XDKs'][sensorname] = sensorDictionary;
-						mapdata[envmap.id()] = envmapDictionary;
+							sensorDictionary[sensorname] = sensorDictionary;
+							envmapDictionary['XDKs'][sensorname] = sensorDictionary;
+							mapdata[envmap.id()] = envmapDictionary;
+
+						} else if (parts.length == 4) {
+							var heatmapDictionary = mapdata[heatmap.id()];
+							for (var i = 0; i < heatmapDictionary['map'].length; i++) {
+								heatDictionary = heatmapDictionary['map'][i];
+								if (heatDictionary['id'] == parts[2]) {
+									if (parts[3] == 'temperature') {
+										heatDictionary['value'] = payload;			
+									}
+									heatmapDictionary['map'][i] = heatDictionary;
+									break;
+								}
+							}
+
+							mapdata[heatmap.id()] = heatmapDictionary;
+						}
 
 					} else if (parts[0] == "positions") {
 						var json = JSON.parse(payload);
@@ -169,6 +187,8 @@
 						console.log("Host: " + host + ", Port:" + port);
 						console.log("subscribe to " + sensortopic);
 						mqtt.subscribe(sensortopic, {qos: 0});
+						console.log("subscribe to " + roomtopic);
+						mqtt.subscribe(roomtopic, {qos: 0});
 						console.log("subscribe to " + positiontopic);
 						mqtt.subscribe(positiontopic, {qos: 0});
 						console.log("subscribe to " + beacontopic);
@@ -222,10 +242,12 @@
 				proximities = d3.floorplan.proximities();
 				envmap = d3.floorplan.envmap();
 				overlays = d3.floorplan.overlays();
+				heatmap = d3.floorplan.heatmap();
 
 				map.addLayer(imagelayer);
 				map.addLayer(regions);
 				map.addLayer(beacons);
+				map.addLayer(heatmap);
 				map.addLayer(overlays);
 				map.addLayer(devices);
 				map.addLayer(positions);
@@ -240,6 +262,7 @@
 				mapdata[proximities.id()] =  data.owntracks;
 				mapdata[envmap.id()] =  data.envmap;
 				mapdata[overlays.id()] =  data.overlays;
+				mapdata[heatmap.id()] =  data.heatmap;
 
 				d3.select("#d3out")
 					.append("svg")
