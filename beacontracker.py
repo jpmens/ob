@@ -103,7 +103,7 @@ def load_blist():
 def find_beacon(uuid, major, minor):
     for beaconName in beacons:
             beacon = beacons[beaconName]
-            if uuid == beacon['uuid'] and major == beacon['major'] and minor == beacon['minor']:
+            if str(uuid) == str(beacon['uuid']) and major == beacon['major'] and minor == beacon['minor']:
                 return (beaconName, beacon)
     return (None, None)
 
@@ -166,6 +166,9 @@ def on_transition(mosq, userdata, msg):
         print "-- not a 't:b' payload"
         return
 
+    tst     = data.get("tst", 0)
+    tid     = data.get("tid", "--")
+
     if data['event'] == 'enter' and 'desc' in data:
         # clear region entry when leaving region
         regionTopic = "%s/%s" % (mqttConf.get('regionprefix'), base_topic)
@@ -187,17 +190,17 @@ def on_transition(mosq, userdata, msg):
         
         # clear beacon entry when leaving region
         beaconTopic = "%s/%s" % (mqttConf.get('beaconprefix'), base_topic)
-        mqttc.publish(beaconTopic, null, qos=2, retain=False)
+        mqttc.publish(beaconTopic, None, qos=2, retain=False)
 
         # clear region entry when leaving region
         regionTopic = "%s/%s" % (mqttConf.get('regionprefix'), base_topic)
-        mqttc.publish(regionTopic, null, qos=2, retain=False)
+        mqttc.publish(regionTopic, None, qos=2, retain=False)
 
         # clear position entry when leaving region
         if base_topic in devices:
             del devices[base_topic];
         positionTopic = "%s/%s" % (mqttConf.get('positionprefix'), base_topic)
-        mqttc.publish(positionTopic, null, qos=2, retain=False)
+        mqttc.publish(positionTopic, None, qos=2, retain=False)
 
 def on_beacon(mosq, userdata, msg):
     if msg.retain == 1 or len(msg.payload) == 0:
@@ -219,7 +222,7 @@ def on_beacon(mosq, userdata, msg):
     uuid    = data.get("uuid", '12345678-ABCD-EF01-2345-000000000001')
     major   = data.get("major", 0)
     minor   = data.get("minor", 0)
-    acc     = data.get("acc", 99)
+    acc     = data.get("acc", 99)  * beaconfactor
     prox    = data.get("prox", 9)
     rssi    = data.get("rssi", -99)
     tst     = data.get("tst", 0)
@@ -245,7 +248,7 @@ def on_beacon(mosq, userdata, msg):
         featured_topic = "%s/%s" % (base_topic, 'cmd')
         featured_content = "no matching beacon found\n%s:%d:%d" % (uuid, major, minor)
         (beaconName, beacon) = find_beacon(uuid, major, minor)
-        if beacon != None:
+        if beacon is not None:
             featured_content = "%s\n\n%s" % (beacon['desc'], beacon['URL'])
         payload = {'_type': 'cmd', 'tst': tst, 'action': 'action', 'content' : featured_content }
         featured_payload = json.dumps(payload)
@@ -311,7 +314,7 @@ def on_beacon(mosq, userdata, msg):
                 break
             i = i + 1
         (beaconName, beacon) = find_beacon(visibleBeacon['uuid'], visibleBeacon['major'], visibleBeacon['minor'])
-        if beacon != None:
+        if beacon is not None:
             m = {}
             m['x'] = beacon['x'] / mapfactor
             m['y'] = beacon['y'] / mapfactor
@@ -346,6 +349,7 @@ def on_beacon(mosq, userdata, msg):
 
 beaconlist = load_blist() 
 beacons = beaconlist['Beacons']
+beaconfactor = float(mqttConf.get('beaconfactor', 1.0))
 
 clientid = mqttConf.get('client_id', 'beacontracker-{0}'.format(os.getpid()))
 mqttc = paho.Client(clientid, clean_session=True, userdata=None, protocol=paho.MQTTv31)

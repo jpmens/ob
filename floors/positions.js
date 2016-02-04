@@ -47,7 +47,7 @@ d3.floorplan.positions = function() {
 		
 			positions.attr("cx", function(d) { return y(data.positions[d].x); })
 				.attr("cy", function(d) { return y(data.positions[d].y); })
-				.attr("r", function(d) { return y(5); })
+				.attr("r", function(d) { return y(2.5); })
 				.attr("class", "position");
 
 			positionsEnter.transition().style("opacity", 0.6);
