@@ -261,6 +261,7 @@ def on_beacon(mosq, userdata, msg):
             beaconJson['name'] = beaconName
             beaconJson['room'] = beacon['room']
         beaconPayload = json.dumps(beaconJson)
+        print beaconName, beaconPayload
         mqttc.publish(beaconTopic, beaconPayload, qos=2, retain=False)
 
     # get device

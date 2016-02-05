@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<title>Floor Plan</title>
+			<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+			<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+			<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+			<script type="text/javascript" src="config.js"></script>
+			<script type="text/javascript" src="mqttws31.js"></script>
+			<script type="text/javascript" src="floorplan.js"></script>
+			<script type="text/javascript" src="imagelayer.js"></script>
+			<script type="text/javascript" src="regions.js"></script>
+			<script type="text/javascript" src="beacons.js"></script>
+			<script type="text/javascript" src="devices.js"></script>
+			<script type="text/javascript" src="positions.js"></script>
+			<script type="text/javascript" src="proximities.js"></script>
+			<script type="text/javascript" src="envmap.js"></script>
+			<script type="text/javascript" src="overlays.js"></script>
+			<script type="text/javascript" src="heatmap.js"></script>
+
+		<style type="text/css">
+			@import url('https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css');
+			@import url('default.css');
+		</style>
+	</head>
+	<body>
+		<div id="d3out"></div>
+
+		<script language="javascript" type="text/javascript">
+			var reconnectTimeout = 3000;
+			var mqtt;
+			var count = 0;
+
+			function mqtt_connect()
+			{
+				var clientid = 'sensormap-' + parseInt(Math.random() * 100, 10);
+				mqtt = new Paho.MQTT.Client(host, port, clientid);
+
+				mqtt.onConnectionLost = function (responseObject) {
+					setTimeout(mqtt_connect, reconnectTimeout);
+					console.log(responseObject.errorMessage);
+				};
+
+				mqtt.onMessageArrived = function (message) {
+					topic = message.destinationName;
+					payload = message.payloadString;
+
+					console.log("onMessageArrived: " + topic + ": " + payload);
+					var parts = topic.split('/');
+
+					if (parts[0] == "sensors") {
+						count++;
+						if (parts.length == 3) {
+							var envmapDictionary = mapdata[envmap.id()];
+							var sensorname = parts[1];
+							var sensorDictionary = envmapDictionary['XDKs'][sensorname];
+							if (sensorDictionary) {
+								if (parts[2] == 'temperature') {
+									sensorDictionary['temperature'] = payload;			
+								} else if (parts[2] == 'light') {
+									sensorDictionary['light'] = payload;			
+								} else if (parts[2] == 'humidity') {
+									sensorDictionary['humidity'] = payload;			
+								}
+							}
+								
+							sensorDictionary[sensorname] = sensorDictionary;
+							envmapDictionary['XDKs'][sensorname] = sensorDictionary;
+							mapdata[envmap.id()] = envmapDictionary;
+
+						} else if (parts.length == 4) {
+							var heatmapDictionary = mapdata[heatmap.id()];
+							for (var i = 0; i < heatmapDictionary['map'].length; i++) {
+								heatDictionary = heatmapDictionary['map'][i];
+								if (heatDictionary['id'] == parts[2]) {
+									if (parts[3] == 'temperature') {
+										heatDictionary['value'] = payload;			
+									}
+									heatmapDictionary['map'][i] = heatDictionary;
+									break;
+								}
+							}
+
+							mapdata[heatmap.id()] = heatmapDictionary;
+						}
+
+					} else if (parts[0] == "positions") {
+						var json = JSON.parse(payload);
+						if (json) {
+							count++;
+							var owntracksDictionary = mapdata[positions.id()];
+							var positionsDictionary = owntracksDictionary['positions']
+							var position = {};
+							tid = json['tid'];
+							x = json['x'];
+							y = json['y'];
+							position['tid'] = tid;
+							position['x'] = x;
+							position['y'] = y;
+							console.log(position);
+							positionsDictionary[tid] = position;
+							owntracksDictionary['positions'] = positionsDictionary;
+							mapdata[positions.id()] = owntracksDictionary;
+						}
+
+					} else if (parts[0] == "beacons") {
+						var json = JSON.parse(payload);
+						if (json) {
+							count++;
+							var owntracksDictionary = mapdata[proximities.id()];
+							var devicesDictionary = owntracksDictionary['devices']
+							var beaconsDictionary = owntracksDictionary['beacons']
+							tid = json['tid'];
+							uuid = json['uuid'];
+							major = json['major'];
+							minor = json['minor'];
+							beaconName = "";
+							if (tid in devicesDictionary) {
+								device = devicesDictionary[tid];
+							} else {
+								device = {};
+								device['tid'] = tid;
+								device['beacon'] = "";
+								device['region'] = "";
+							}
+							for (var beaconKey in beaconsDictionary) {
+								beacon = beaconsDictionary[beaconKey];
+								if (uuid == beacon['uuid'] && major == beacon['major'] && minor == beacon['minor']) {
+									beaconName = beaconKey;
+									break;
+								}
+							}
+							device['beacon'] = beaconName;
+							console.log(device);
+							devicesDictionary[tid] = device;
+							owntracksDictionary['devices'] = devicesDictionary;
+							mapdata[devices.id()] = owntracksDictionary;
+						}
+					} else if (parts[0] == "regions") {
+						var json = JSON.parse(payload);
+						if (json) {
+							count++;
+							var owntracksDictionary = mapdata[regions.id()];
+							var devicesDictionary = owntracksDictionary['devices']
+							var regionsDictionary = owntracksDictionary['regions']
+							tid = json['tid'];
+							desc= json['desc'];
+							regionName = "";
+							if (tid in devicesDictionary) {
+								device = devicesDictionary[tid];
+							} else {
+								device = {};
+								device['tid'] = tid;
+								device['beacon'] = "";
+								device['region'] = "";
+							}
+							for (var regionKey in regionsDictionary) {
+								if (desc == regionKey) {
+									regionName = regionKey;
+									break;
+								}
+							}
+							device['region'] = regionName;
+							console.log(device);
+							devicesDictionary[tid] = device;
+							owntracksDictionary['devices'] = devicesDictionary;
+							mapdata[devices.id()] = owntracksDictionary;
+						}
+					}	
+					
+					if (count % 1 == 0) {
+						d3.select("#d3out")
+							.datum(mapdata)
+							.call(map);
+					}
+				};
+
+				var options = {
+					timeout: 60,
+					useSSL: useTLS,
+					onSuccess: function () {
+						console.log("Host: " + host + ", Port:" + port);
+						//console.log("subscribe to " + sensortopic);
+						//mqtt.subscribe(sensortopic, {qos: 0});
+						//console.log("subscribe to " + roomtopic);
+						//mqtt.subscribe(roomtopic, {qos: 0});
+						console.log("subscribe to " + positiontopic);
+						mqtt.subscribe(positiontopic, {qos: 0});
+						console.log("subscribe to " + beacontopic);
+						mqtt.subscribe(beacontopic, {qos: 0});
+						console.log("subscribe to " + regiontopic);
+						mqtt.subscribe(regiontopic, {qos: 0});
+					},
+					onFailure: function (message) {
+						console.log(message.errorMessage);
+						setTimeout(mqtt_connect, reconnectTimeout);
+					}
+				};
+				if (username != null) {
+				    options.userName = username;
+				    options.password = password;
+				}
+
+				mqtt.connect(options);
+			}
+
+			var out = function(message) {
+				var div = document.createElement('div');
+				div.innerHTML = message;
+				document.getElementById('output').appendChild(div);
+			};
+
+			var mapdata = {};
+			var regions;
+			var beacons;
+			var devices;
+			var positions;
+			var proximities;
+			var map;
+
+			d3.json("data.json", function(error, data) {
+				var xscale = d3.scale.linear()
+						.domain([0, data.canvaswidth])
+						.range([0, data.width]);
+				var yscale = d3.scale.linear()
+						.domain([0, data.canvasheight])
+						.range([0, data.height]);
+
+				map = d3.floorplan().xScale(xscale).yScale(yscale);
+
+
+
+				var imagelayer = d3.floorplan.imagelayer();
+				map.addLayer(imagelayer);
+				mapdata[imagelayer.id()] =  data.imagelayer;
+
+				beacons = d3.floorplan.beacons();
+				map.addLayer(beacons);
+				mapdata[beacons.id()] =  data.owntracks;
+
+				proximities = d3.floorplan.proximities();
+				map.addLayer(proximities);
+				mapdata[proximities.id()] =  data.owntracks;
+
+				regions = d3.floorplan.regions();
+				//map.addLayer(regions);
+				mapdata[regions.id()] =  data.owntracks;
+
+				heatmap = d3.floorplan.heatmap();
+				//map.addLayer(heatmap);
+				mapdata[heatmap.id()] =  data.heatmap;
+
+				overlays = d3.floorplan.overlays();
+				//map.addLayer(overlays);
+				mapdata[overlays.id()] =  data.overlays;
+
+				devices = d3.floorplan.devices();
+				//map.addLayer(devices);
+				mapdata[devices.id()] =  data.owntracks;
+
+				positions = d3.floorplan.positions();
+				//map.addLayer(positions);
+				mapdata[positions.id()] =  data.owntracks;
+
+				envmap = d3.floorplan.envmap();
+				//map.addLayer(envmap);
+				mapdata[envmap.id()] =  data.envmap;
+
+				d3.select("#d3out")
+					.append("svg")
+					.attr("height",  data.height)
+					.attr("width",  data.width)
+					.datum(mapdata).call(map);
+			});
+
+
+			window.onload = function() {
+				var num_messages = 0;
+
+				mqtt_connect();
+
+			};
+		</script>
+		<p>XDKs rectangles with color coded temperatures and disk size coded lights, hover to display values</p>
+		<p>kontakt.io iBeacons with minor numbers</p>
+		<p>(c) 2016 by <a href="http://owntracks.org">owntracks.org</a></p>
+	</body>
+</html>

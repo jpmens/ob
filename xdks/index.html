@@ -189,12 +189,12 @@
 						mqtt.subscribe(sensortopic, {qos: 0});
 						console.log("subscribe to " + roomtopic);
 						mqtt.subscribe(roomtopic, {qos: 0});
-						console.log("subscribe to " + positiontopic);
-						mqtt.subscribe(positiontopic, {qos: 0});
-						console.log("subscribe to " + beacontopic);
-						mqtt.subscribe(beacontopic, {qos: 0});
-						console.log("subscribe to " + regiontopic);
-						mqtt.subscribe(regiontopic, {qos: 0});
+						//console.log("subscribe to " + positiontopic);
+						//mqtt.subscribe(positiontopic, {qos: 0});
+						//console.log("subscribe to " + beacontopic);
+						//mqtt.subscribe(beacontopic, {qos: 0});
+						//console.log("subscribe to " + regiontopic);
+						//mqtt.subscribe(regiontopic, {qos: 0});
 					},
 					onFailure: function (message) {
 						console.log(message.errorMessage);
@@ -245,13 +245,13 @@
 				heatmap = d3.floorplan.heatmap();
 
 				map.addLayer(imagelayer);
-				map.addLayer(regions);
+				//map.addLayer(regions);
 				map.addLayer(heatmap);
-				map.addLayer(beacons);
+				//map.addLayer(beacons);
 				map.addLayer(overlays);
-				map.addLayer(devices);
-				map.addLayer(positions);
-				map.addLayer(proximities);
+				//map.addLayer(devices);
+				//map.addLayer(positions);
+				//map.addLayer(proximities);
 				map.addLayer(envmap);
 
 				mapdata[imagelayer.id()] =  data.imagelayer;
@@ -280,7 +280,6 @@
 			};
 		</script>
 		<p>XDKs rectangles with color coded temperatures and disk size coded lights, hover to display values</p>
-		<p>kontakt.io iBeacons with minor numbers</p>
 		<p>(c) 2016 by <a href="http://owntracks.org">owntracks.org</a></p>
 	</body>
 </html>
