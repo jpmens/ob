@@ -17,6 +17,7 @@ import codecs
 from tsplit import twosplit
 import config
 import threading
+import requests
 
 sys.stdout = codecs.getwriter("utf-8")(sys.__stdout__) 
 
@@ -83,6 +84,23 @@ def load_xlist():
 
 xdksJson= load_xlist()
 xdks = xdksJson['XDKs']
+
+def notifier(deviceId):
+    print "notifying ", deviceId
+    token = r.get('token', '')
+
+    payloadDict = {
+        'path':        'led',
+        'command':     'red',
+        'value':       '2',
+    }
+    payload = json.dumps(payloadDict)
+    headers = {
+        'Content-Type':     'application/json',
+        'Authorization':    "Bearer %s" % token,
+    }
+    result = requests.post("https://api.relayr.io/devices/%s/cmd" % deviceId, data=payload, headers=headers)
+    print result
 
 def subscriber():
     for xdk in xdks:
@@ -173,6 +191,11 @@ def on_relayrmessage(mosq, userdata, msg):
                 new_room_payload = avg
                 print "room" + room + " : " + new_room_topic, " = ", new_room_payload
                 mqttc.publish(new_room_topic, json.dumps(new_room_payload), qos=2, retain=True)
+        if meaning == "light":
+                deviceId = data['deviceId']
+                notifierThread = threading.Thread(target=notifier(deviceId))
+                notifierThread.start()
+
 
 r = cf.config('relayr')
 

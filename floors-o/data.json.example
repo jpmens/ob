@@ -1,14 +1,51 @@
 {
-	"height": 1000, 
-	"width": 1200, 
+	"height": 665, 
+	"width": 800, 
 
 	"canvasheight": 100, 
 	"canvaswidth": 120, 
 
 	"imagelayer": [ 
-		{ "url": "openBerlin_72dpi.png", "x": 0, "y": 0, "height": 100, "width": 120 }
+		{ "url": "openBerlin_bw.png", "x": 0, "y": 0, "height": 100, "width": 120 }
 	],
 
+	"owntracks": {
+		"regions": { 
+			"openBerlin":			{"x":  60, "y":  50, "r": 50},
+
+			"D75":				{"x":  95, "y":  97.5, "r":  2.5},
+			"Berlin":			{"x": 105, "y":  97.5, "r":  2.5},
+
+			"":				{"x": 115, "y":  97.5, "r":  2.5}
+		},
+
+		"positions": { 
+		},
+
+		"beacons": { 
+			"101":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   101, "x":  60, "y":   90, "r":   8},
+			"104":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   104, "x":  20, "y":   80, "r":  10},
+
+			"201":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   201, "x":  66, "y":   47, "r":   5},
+			"202":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   202, "x":  54, "y":   47, "r":   5},
+			"203":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   203, "x":  54, "y":   57, "r":   5},
+
+			"301":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   301, "x":  66, "y":   70, "r":   5},
+
+			"21652":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     2, "minor": 21652, "x":  54, "y":   71, "r":   5},
+			"37580":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     2, "minor": 37580, "x":  68, "y":   77, "r":   2},
+
+			"1":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     3, "minor":     1, "x":  20, "y":   32, "r":  10},
+
+			"14369":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 11804, "minor": 14369, "x":  68, "y":   82, "r":   2},
+			"22136":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":  4660, "minor": 22136, "x":  60, "y":   25, "r":  10},
+
+			"":		{"uuid": "00000000-0000-0000-0000-000000000000", "major":     0, "minor":     0, "x": 200, "y":  200, "r":   1}
+		},
+
+		"devices": { 
+		}
+	},
 	"envmap": {
 		"binSize": 3,
 		"units": "\u00B0C",
@@ -132,36 +169,6 @@
 			"XDK191": {"x":  0, "y": 76, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
 			"XDK192": {"x":  0, "y": 80, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"},
 			"XDK999": {"x":  0, "y": 84, "temperature": 0.0, "humidity": 0.0, "light": 0.0, "status": "unknown"}
-		}
-	},
-	"owntracks": {
-		"regions": { 
-			"openBerlin":			{"x":  60, "y":  50, "r": 50},
-
-			"D75":				{"x":  95, "y":  97.5, "r":  2.5},
-			"Berlin":			{"x": 105, "y":  97.5, "r":  2.5},
-
-			"":				{"x": 115, "y":  97.5, "r":  2.5}
-		},
-
-		"positions": { 
-		},
-
-		"beacons": { 
-			"202":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 202, "x": 70, "y":  37, "r": 5},
-			"203":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 203, "x": 60, "y":  45, "r": 5},
-			"201":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 201, "x": 50, "y":  37, "r": 5},
-
-			"BI":		{"uuid": "DEADBEEF-ABBA-CDEF-1001-000000000001", "major": 1, "minor":   1, "x": 15, "y":  97.5, "r": 2.5},
-			"green":	{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 3, "minor":   1, "x": 25, "y":  97.5, "r": 2.5},
-			"pi":		{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 3, "minor":   2, "x": 35, "y":  97.5, "r": 2.5},
-			"bluki":	{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 2, "minor":   1, "x": 45, "y":  97.5, "r": 2.5},
-			"car":		{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 1, "minor":   1, "x": 55, "y":  97.5, "r": 2.5},
-
-			"":		{"uuid": "00000000-0000-0000-0000-000000000000", "major": 0, "minor":   0, "x":  5, "y":  97.5, "r": 2.5}
-		},
-
-		"devices": { 
 		}
 	},
 	"overlays": {

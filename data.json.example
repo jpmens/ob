@@ -1,14 +1,21 @@
 {
 "Beacons": {
-"201":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 201, "room": "openSpace", "desc": "openBerlin Left", "URL": "http://openberlin.owntracks.org/Open%20office%201.OG", "x": 50, "y": 37},
-"201":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 202, "room": "openSpace", "desc": "openBerlin Right", "URL": "https://openberlin.owntracks.org/lamp/right", "x": 70, "y": 37},
-"201":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 1, "minor": 203, "room": "openSpace", "desc": "openBerlin Middle", "URL": "https:/openberlin.owntracks.org/lamp/middle", "x": 60, "y": 45},
+"101":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   101, "room": "-", "desc": "1:101",		"URL": "https://openberlin.owntracks.org/lamp/1:101",		"x": 54, "y": 90},
+"104":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   104, "room": "-", "desc": "1:104",		"URL": "https://openberlin.owntracks.org/lamp/1:104",		"x": 20, "y": 80},
 
-"BI11":	{"uuid": "DEADBEEF-ABBA-CDEF-1001-000000000001", "major": 1, "minor":   1, "room": "BI", "desc": "Bielefeld Fireplace", "URL": "https://openberlin.owntracks.org/lamp/jp", "x": 50, "y": 37},
-"NE31":	{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 3, "minor":   1, "room": "NE", "desc": "Neuss Office green", "URL": "https://openberlin.owntracks.org/lamp/green", "x": 6, "y": 8},
-"NE32":	{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 3, "minor":   2, "room": "NE", "desc": "Neuss Office pi", "URL": "https://openberlin.owntracks.org/lamp/pi",	"x": 10, "y": 0},
-"NE21":	{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 2, "minor":   1, "room": "NE", "desc": "bluki", "URL": "https://openberlin.owntracks.org/lamp/bluki", "x": 4, "y": 10},
-"NE11":	{"uuid": "7777772E-626C-756B-6969-2E636F6D0001", "major": 1, "minor":   1, "room": "NE", "desc": "car", "URL": "https://openberlin.owntracks.org/lamp/car", "x": 1, "y": 8}
+"201":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   201, "room": "-", "desc": "1:201",		"URL": "https://openberlin.owntracks.org/lamp/1:201",		"x": 66, "y": 47},
+"202":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   202, "room": "-", "desc": "1:202",		"URL": "https://openberlin.owntracks.org/lamp/1:202",		"x": 54, "y": 47},
+"203":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   203, "room": "-", "desc": "1:203",		"URL": "https://openberlin.owntracks.org/lamp/1:203",		"x": 54, "y": 57},
+
+"301":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     1, "minor":   301, "room": "-", "desc": "1:301",		"URL": "https://openberlin.owntracks.org/lamp/1:301",		"x": 66, "y": 70},
+
+"21652":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     2, "minor": 21652, "room": "-", "desc": "2:21652",	"URL": "https://openberlin.owntracks.org/lamp/2:21652",		"x": 54, "y": 70},
+"37580":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     2, "minor": 37580, "room": "-", "desc": "2:37580",	"URL": "https://openberlin.owntracks.org/lamp/2:37580",		"x": 66, "y": 77},
+
+"1":		{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":     3, "minor":     1, "room": "-", "desc": "3:1",		"URL": "https://openberlin.owntracks.org/lamp/3:1",		"x": 20, "y": 32},
+
+"14369":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major": 11804, "minor": 14369, "room": "-", "desc": "11804:14369",	"URL": "https://openberlin.owntracks.org/lamp/11804:14369",	"x": 66, "y": 82},
+"22136":	{"uuid": "F7826DA6-4FA2-4E98-8024-BC5B71E0893E", "major":  4660, "minor": 22136, "room": "-", "desc": "4660:22136",	"URL": "https://openberlin.owntracks.org/lamp/4660:22136",	"x": 60, "y": 25}
 },
 "XDKs": {
 "XDK001": {"room":"Soldering","deviceId":"01989685-1688-4b49-864f-1a65e833487a","topic":"/v1/53ccbcb4-7fae-42af-9f02-2279309dae46", "x": 99.9, "y": 99.9, "z": 1},
