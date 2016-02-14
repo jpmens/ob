@@ -18,7 +18,7 @@ PASS=''
 
 TOKEN=''
 DEVICEID=''
-for bright in 2 2 2 2 2 2 2 2 2 2 2 
+for bright in 99
 # set led
 do echo "trying " $TOKEN
 curl --include \
@@ -26,8 +26,7 @@ curl --include \
      --header "Content-Type: application/json" \
      --header "Authorization: Bearer $TOKEN" \
      --data-binary "{
-    \"path\" : \"led\",
-    \"command\" : \"red\",
+    \"command\" : \"command\",
     \"value\" : \"$bright\"
 }" \
 "https://api.relayr.io/devices/$DEVICEID/cmd"
