@@ -86,7 +86,6 @@ xdksJson= load_xlist()
 xdks = xdksJson['XDKs']
 
 def notifier(deviceId):
-    print "notifying ", deviceId
     token = r.get('token', '')
 
     payloadDict = {
@@ -100,7 +99,6 @@ def notifier(deviceId):
         'Authorization':    "Bearer %s" % token,
     }
     result = requests.post("https://api.relayr.io/devices/%s/cmd" % deviceId, data=payload, headers=headers)
-    print result
 
 def subscriber():
     for xdk in xdks:
@@ -162,12 +160,16 @@ def on_relayrmessage(mosq, userdata, msg):
 
     readings = data['readings']
     for reading in readings:
+        meaning = reading['meaning']
         new_topic = "%s/%s/%s" % (m.get('prefix'), xdk, reading['meaning'])
+        if meaning == "temperature":
+            value = float(reading['value'])
+            value = value - 5.0
+            reading['value'] = value
         new_payload = reading['value']
         print xdk + " : " + new_topic, " = ", new_payload
         mqttc.publish(new_topic, json.dumps(new_payload), qos=2, retain=True)
 
-        meaning = reading['meaning']
         if meaning == "temperature" or meaning == "pressure" or meaning == "humidity" or meaning == "light":
             xdkDict = xdks[xdk]
             if 'room' in xdkDict:
