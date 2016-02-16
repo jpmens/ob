@@ -247,11 +247,14 @@ def on_beacon(mosq, userdata, msg):
         # build featured content message
         featured_topic = "%s/%s" % (base_topic, 'cmd')
         featured_content = "no matching beacon found\n%s:%d:%d" % (uuid, major, minor)
+        url = None
         (beaconName, beacon) = find_beacon(uuid, major, minor)
         if beacon is not None:
             featured_content = "%s\n\n%s" % (beacon['desc'], beacon['URL'])
             url = beacon['URL']
-        payload = {'_type': 'cmd', 'tst': tst, 'action': 'action', 'content': featured_content, 'url': url}
+        payload = {'_type': 'cmd', 'tst': tst, 'action': 'action', 'content': featured_content}
+        if url != None:
+            payload['url'] = url
         featured_payload = json.dumps(payload)
         mqttc.publish(featured_topic, featured_payload, qos=2, retain=False)
 
