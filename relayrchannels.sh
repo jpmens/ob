@@ -16,9 +16,9 @@ PASS=''
 
 #echo ""
 
-TOKEN=''
-DEVICEID=''
-for bright in 99
+TOKEN='aUYN_D.DcGDcPMLcgxbEySbgXhIzRz-P'
+DEVICEID='4a392ed2-9304-4583-9ea8-531d4007719f'
+for bright in 100
 # set led
 do echo "trying " $TOKEN
 curl --include \

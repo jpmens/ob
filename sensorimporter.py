@@ -195,8 +195,8 @@ def on_relayrmessage(mosq, userdata, msg):
                 mqttc.publish(new_room_topic, json.dumps(new_room_payload), qos=2, retain=True)
         if meaning == "light":
                 deviceId = data['deviceId']
-                notifierThread = threading.Thread(target=notifier(deviceId))
-                notifierThread.start()
+                #notifierThread = threading.Thread(target=notifier(deviceId))
+                #notifierThread.start()
 
 
 r = cf.config('relayr')
